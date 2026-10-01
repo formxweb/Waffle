@@ -1,0 +1,49 @@
+/* Generated subsets, see scripts/fonts.py. Turkish letters and ₺ come from the -latin-ext files. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 560;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-latin.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+02C6, U+02DC, U+2013-2014, U+2018-201E, U+2022, U+2026, U+2039-203A, U+2190-2193, U+2197-2198, U+2122, U+2212;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 560;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-latin-ext.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F, U+20BA;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 560;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-italic-latin.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+02C6, U+02DC, U+2013-2014, U+2018-201E, U+2022, U+2026, U+2039-203A, U+2190-2193, U+2197-2198, U+2122, U+2212;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 560;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F, U+20BA;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-sans-latin.woff2') format('woff2');
+  unicode-range: U+0020-007E, U+00A0-00FF, U+0131, U+02C6, U+02DC, U+2013-2014, U+2018-201E, U+2022, U+2026, U+2039-203A, U+2190-2193, U+2197-2198, U+2122, U+2212;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/instrument-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+011E-011F, U+0130, U+015E-015F, U+20BA;
+}

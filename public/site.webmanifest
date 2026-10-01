@@ -1,0 +1,10 @@
+{
+  "name": "ESD Waffle — Kare kare mutluluk",
+  "short_name": "ESD Waffle",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#120a06",
+  "theme_color": "#120a06",
+  "lang": "tr",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

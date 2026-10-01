@@ -1,0 +1,26 @@
+{
+  "name": "esdwaffle",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ESD Waffle — Kare kare mutluluk. İstanbul'da kova waffle.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26"
+  },
+  "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2"
+  }
+}

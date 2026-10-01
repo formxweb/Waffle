@@ -1,0 +1,207 @@
+.hero {
+  position: relative;
+  min-height: max(100svh, 640px);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ink);
+}
+
+.hero-gl,
+.hero-fallback,
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-gl {
+  z-index: -3;
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+.has-gl .hero-gl.is-ready {
+  opacity: 1;
+}
+
+/* without WebGL: a lit waffle grid in CSS */
+.hero-fallback {
+  z-index: -4;
+  background:
+    radial-gradient(60% 55% at 70% 78%, rgba(224, 164, 88, 0.55), transparent 70%),
+    radial-gradient(40% 40% at 60% 90%, rgba(168, 97, 31, 0.6), transparent 70%),
+    var(--ink);
+}
+.hero-fallback::after {
+  content: '';
+  position: absolute;
+  inset: 30% -10% -20% 20%;
+  background:
+    linear-gradient(90deg, rgba(18, 10, 6, 0.55) 0 22%, transparent 22% 100%) 0 0 / 64px 64px,
+    linear-gradient(0deg, rgba(18, 10, 6, 0.55) 0 22%, transparent 22% 100%) 0 0 / 64px 64px;
+  transform: perspective(700px) rotateX(58deg) rotateZ(-24deg);
+  mask-image: radial-gradient(closest-side, #000 40%, transparent);
+  -webkit-mask-image: radial-gradient(closest-side, #000 40%, transparent);
+}
+.has-gl .hero-fallback {
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+}
+
+.hero-shade {
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(18, 10, 6, 0.82) 0%, rgba(18, 10, 6, 0.45) 38%, rgba(18, 10, 6, 0) 64%),
+    linear-gradient(180deg, rgba(18, 10, 6, 0.55) 0%, rgba(18, 10, 6, 0) 26%, rgba(18, 10, 6, 0) 72%, rgba(18, 10, 6, 0.85) 100%);
+}
+
+.hero-inner {
+  align-self: center;
+  padding-top: calc(var(--nav-h) + 4vh);
+  padding-bottom: 6vh;
+}
+
+.hero-eyebrow .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.hero-title {
+  margin-top: 26px;
+  font-family: var(--serif);
+  font-size: var(--fs-hero);
+  font-weight: 340;
+  font-variation-settings: 'opsz' 144;
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+.hero-title .line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.hero-title .line > * {
+  display: inline-block;
+}
+.hero-title em {
+  padding-right: 0.05em;
+}
+
+.hero-lead {
+  margin-top: 28px;
+  max-width: 30ch;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: rgba(245, 235, 221, 0.78);
+  text-wrap: pretty;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.hero-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+}
+
+.facts {
+  display: flex;
+  gap: clamp(20px, 4vw, 56px);
+  padding-top: 18px;
+  border-top: 1px solid rgba(245, 235, 221, 0.18);
+}
+.facts dt {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.facts dd {
+  margin-top: 4px;
+  font-family: var(--serif);
+  font-variation-settings: 'opsz' 48;
+  font-size: 1.28rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.scroll-cue {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+.scroll-cue i {
+  position: relative;
+  width: 1px;
+  height: 52px;
+  overflow: hidden;
+  background: rgba(245, 235, 221, 0.18);
+}
+.scroll-cue i::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--caramel);
+  animation: cue 2.4s var(--ease-in-out) infinite;
+}
+@keyframes cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* intro: elements start hidden only when JS will animate them in */
+.js.intro-pending [data-intro] {
+  opacity: 0;
+}
+
+@media (max-width: 900px) {
+  .hero-shade {
+    background:
+      linear-gradient(180deg, rgba(18, 10, 6, 0.86) 0%, rgba(18, 10, 6, 0.55) 40%, rgba(18, 10, 6, 0) 64%, rgba(18, 10, 6, 0.75) 100%);
+  }
+  .hero-inner {
+    align-self: start;
+    padding-top: calc(var(--nav-h) + 6vh);
+  }
+  .scroll-cue {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-cta .btn {
+    flex: 1 1 auto;
+  }
+  .facts {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .facts dd {
+    font-size: 1.08rem;
+  }
+}
