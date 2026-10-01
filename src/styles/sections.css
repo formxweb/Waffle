@@ -763,7 +763,8 @@
   margin-top: clamp(18px, 3vw, 40px);
   font-family: var(--serif);
   font-variation-settings: 'opsz' 144;
-  font-size: clamp(3.2rem, 12.5vw, 12rem);
+  /* sized so the full handle fits the content width */
+  font-size: calc(min(100vw - 2 * var(--gutter), var(--max)) / 7.9);
   font-style: italic;
   font-weight: 320;
   line-height: 0.95;
@@ -811,12 +812,13 @@
   font-family: var(--serif);
   font-variation-settings: 'opsz' 144;
   /* sized so the wordmark spans the content width */
-  font-size: calc(min(100vw - 2 * var(--gutter), var(--max)) / 3.8);
+  font-size: calc(min(100vw - 2 * var(--gutter), var(--max)) / 3.4);
   font-weight: 340;
   line-height: 0.85;
   letter-spacing: -0.055em;
   white-space: nowrap;
-  padding-bottom: 0.14em;
+  /* room for the dot on İ above and the f descenders below */
+  padding: 0.16em 0 0.14em;
   color: var(--cream);
 }
 .foot-row {

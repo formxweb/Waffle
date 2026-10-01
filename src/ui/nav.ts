@@ -95,7 +95,7 @@ export function nav(lenis: Lenis | null) {
     },
     { rootMargin: '-45% 0px -50% 0px' },
   );
-  for (const id of ['top', 'hikaye', 'kova', 'tasarla', 'menu', 'bul']) {
+  for (const id of ['top', 'hikaye', 'bardak', 'tasarla', 'menu', 'bul']) {
     const s = document.getElementById(id);
     if (s) io.observe(s);
   }

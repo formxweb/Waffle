@@ -313,7 +313,7 @@ export function describe(choice: Choice): string {
     ...name(fruits, choice.fruits),
     ...name(toppings, choice.toppings),
   ];
-  return parts.length ? `Waffle kova: ${parts.join(', ')}` : 'Sade waffle kova';
+  return parts.length ? `Bardakta waffle: ${parts.join(', ')}` : 'Sade bardakta waffle';
 }
 
 export function kova({ choice, id, viewBox = '0 0 520 620', label }: KovaOptions): string {
@@ -389,7 +389,7 @@ function cupFront(id: string): string {
     <path d="${band(400, 404)}" fill="#e0a458" opacity=".9"/>
     <path d="${band(482, 486)}" fill="#e0a458" opacity=".9"/>
     <text font-family="Instrument Sans Variable, sans-serif" font-size="25" font-weight="600" letter-spacing="9" fill="#f0c98e">
-      <textPath href="#${id}-arc" startOffset="50%" text-anchor="middle">ESD WAFFLE</textPath>
+      <textPath href="#${id}-arc" startOffset="50%" text-anchor="middle">İYB WAFFLE</textPath>
     </text>
     <path d="${body}" fill="url(#${id}-shade)"/>
     <path d="${lip}" fill="none" stroke="#fffaf0" stroke-width="7" stroke-linecap="round"/>

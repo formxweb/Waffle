@@ -1,4 +1,4 @@
-import { sauces, fruits, toppings, limits, signatureChoice, type Choice, type Swatch } from '../content';
+import { brand, sauces, fruits, toppings, limits, signatureChoice, type Choice, type Swatch } from '../content';
 import { kova } from '../art/kova';
 
 type Group = keyof Choice;
@@ -21,10 +21,10 @@ const label = (list: Swatch[], id: string) => list.find((s) => s.id === id)!.lab
 const lower = (s: string) => s.toLocaleLowerCase('tr');
 
 export function kovaName(c: Choice): string {
-  if (!c.sauces.length) return 'Sade Kova';
+  if (!c.sauces.length) return 'Sade Bardak';
   let name = NAMES[c.sauces[0]];
   if (c.sauces[0] === 'bitter' && c.fruits.includes('cilek')) name = 'Kara Orman';
-  return `${name} Kova`;
+  return `${name} Bardak`;
 }
 
 export function kovaSummary(c: Choice): string {
@@ -35,7 +35,7 @@ export function kovaSummary(c: Choice): string {
   return parts.join(' · ') || 'Sadece sıcak waffle';
 }
 
-// ?kova=sutlu.beyaz-cilek.muz-findik
+// ?bardak=sutlu.beyaz-cilek.muz-findik
 function encode(c: Choice) {
   return [c.sauces, c.fruits, c.toppings].map((g) => g.join('.') || '0').join('-');
 }
@@ -59,7 +59,7 @@ export function builder() {
   const sumEl = document.querySelector<HTMLElement>('[data-builder-summary]')!;
 
   const params = new URLSearchParams(location.search);
-  let choice: Choice = decode(params.get('kova')) ?? structuredClone(signatureChoice);
+  let choice: Choice = decode(params.get('bardak')) ?? structuredClone(signatureChoice);
 
   form.innerHTML =
     GROUPS.map(
@@ -80,7 +80,7 @@ export function builder() {
     </fieldset>`,
     ).join('') +
     `<div class="atelier-actions">
-      <button class="btn btn-primary" type="button" data-act="share">Kovamı paylaş <span aria-hidden="true">↗</span></button>
+      <button class="btn btn-primary" type="button" data-act="share">Waffle’ımı paylaş <span aria-hidden="true">↗</span></button>
       <button class="btn btn-line" type="button" data-act="random">Şaşırt beni</button>
       <button class="link" type="button" data-act="reset">Baştan al</button>
     </div>
@@ -127,7 +127,7 @@ export function builder() {
   const shareUrl = () => {
     const u = new URL(location.href);
     u.search = '';
-    u.searchParams.set('kova', encode(choice));
+    u.searchParams.set('bardak', encode(choice));
     u.hash = 'tasarla';
     return u.toString();
   };
@@ -148,8 +148,8 @@ export function builder() {
       choice = { sauces: pick(sauces, limits.sauces, 1), fruits: pick(fruits, limits.fruits, 1), toppings: pick(toppings, limits.toppings, 0) };
       sync('all');
     } else if (act === 'share') {
-      const title = `${kovaName(choice)} · ESD Waffle`;
-      const text = `Benim kovam: ${kovaSummary(choice)}.`;
+      const title = `${kovaName(choice)} · ${brand.name}`;
+      const text = `Benim waffle’ım: ${kovaSummary(choice)}.`;
       const url = shareUrl();
       try {
         if (navigator.share) {
@@ -159,7 +159,7 @@ export function builder() {
         await navigator.clipboard.writeText(`${text} ${url}`);
         say('Bağlantı kopyalandı. Kasada göster ya da gönder.');
       } catch (err) {
-        if ((err as DOMException).name !== 'AbortError') say(`Kovan: ${kovaSummary(choice)}`);
+        if ((err as DOMException).name !== 'AbortError') say(`Waffle’ın: ${kovaSummary(choice)}`);
       }
     }
   });

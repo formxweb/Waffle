@@ -25,7 +25,7 @@ const fontsReady = () =>
     Promise.all([
       document.fonts.load('340 100px Fraunces', 'Kare kare'),
       document.fonts.load('italic 300 100px Fraunces', 'mutluluk.'),
-      document.fonts.load('500 16px "Instrument Sans"', 'ESD Waffle İstanbul'),
+      document.fonts.load('500 16px "Instrument Sans"', 'İYB Bubble Waffle Yenimahalle'),
     ]),
     new Promise((r) => setTimeout(r, 2500)),
   ]);
@@ -135,7 +135,7 @@ async function boot() {
   reveals();
   intro(renderer);
 
-  // deep link (#menu, ?kova=…#tasarla) after pins have added their spacing
+  // deep link (#menu, ?bardak=…#tasarla) after pins have added their spacing
   if (location.hash) {
     const target = document.querySelector<HTMLElement>(location.hash);
     if (target) requestAnimationFrame(() => (lenis ? lenis.scrollTo(target, { immediate: true }) : target.scrollIntoView()));

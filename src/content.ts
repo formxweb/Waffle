@@ -4,11 +4,9 @@
  */
 
 export const brand = {
-  name: 'ESD Waffle',
-  url: 'https://esdwaffle.com/',
-  instagram: 'https://www.instagram.com/esdwaffle/',
-  handle: '@esdwaffle',
-  city: 'İstanbul',
+  name: 'İYB Bubble Waffle Yenimahalle',
+  instagram: 'https://www.instagram.com/iybwaffleyenimahalle/',
+  handle: '@iybwaffleyenimahalle',
 };
 
 export type Swatch = { id: string; label: string; color: string; shade: string };

@@ -10,7 +10,7 @@ const SPREAD: Record<(typeof STEPS)[number], number> = { cup: 150, waffle: 40, s
 export function mountSignature() {
   const art = document.querySelector<HTMLElement>('[data-kova="signature"]');
   if (!art) return;
-  art.innerHTML = kova({ choice: signatureChoice, id: 'ks', viewBox: '0 -40 520 820', label: 'Kova Waffle' });
+  art.innerHTML = kova({ choice: signatureChoice, id: 'ks', viewBox: '0 -40 520 820', label: 'Bardakta Waffle' });
 }
 
 /** Pinned: the kova comes apart, each layer is introduced, then it closes again. */
