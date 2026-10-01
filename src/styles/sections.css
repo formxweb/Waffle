@@ -104,8 +104,18 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3.4fr);
+  grid-template-areas: 'head art list';
   align-items: center;
   gap: clamp(24px, 3vw, 56px);
+}
+.sig-head {
+  grid-area: head;
+}
+.sig-art {
+  grid-area: art;
+}
+.sig-layers {
+  grid-area: list;
 }
 .sig-head .display {
   margin-top: 22px;
@@ -227,15 +237,63 @@
   display: block;
 }
 
-@media (max-width: 1100px) {
+/* Narrow or short screens: copy on the left, the kova on the right at the height the
+   window allows, and only the current layer's caption, so the pinned scene always fits. */
+@media (min-width: 761px) and (max-width: 1100px), (min-width: 761px) and (max-height: 720px) {
+  .sig-pin {
+    padding-bottom: 32px;
+  }
   .sig-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    grid-template-areas:
+      'head art'
+      'list art';
+    align-content: center;
+    gap: 28px clamp(24px, 4vw, 56px);
   }
   .sig-head {
-    grid-column: 1 / -1;
+    align-self: end;
+  }
+  .sig-head .display {
+    margin-top: 14px;
+    font-size: clamp(2.5rem, 5.4vw, 4.6rem);
+  }
+  .sig-head .lead {
+    margin-top: 14px;
+    font-size: 1.02rem;
+  }
+  .sig-price {
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 20px;
+    padding-top: 16px;
+  }
+  .price {
+    font-size: clamp(2.2rem, 3.6vw, 2.8rem);
   }
   .sig-art {
-    height: min(60svh, 600px);
+    height: clamp(260px, calc(100svh - var(--nav-h) - 80px), 680px);
+  }
+  .sig-layers {
+    align-self: start;
+  }
+  .is-pinned .sig-layers li {
+    grid-area: 1 / 1;
+    opacity: 0;
+  }
+  .is-pinned .sig-layers li.is-active {
+    opacity: 1;
+  }
+  .sig-progress {
+    bottom: -18px;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 600px) {
+  .sig-head .lead {
+    display: none;
   }
 }
 
@@ -246,6 +304,7 @@
   }
   .sig-grid {
     grid-template-columns: 1fr;
+    grid-template-areas: 'head' 'art' 'list';
     gap: 8px;
   }
   .sig-head .display {
@@ -327,6 +386,8 @@
 }
 .atelier-art {
   aspect-ratio: 1 / 0.92;
+  /* the sticky card (drawing + caption) must fit short windows */
+  max-height: max(240px, calc(100svh - var(--nav-h) - 170px));
   padding: 8% 6% 0;
 }
 .atelier-art .kova {
