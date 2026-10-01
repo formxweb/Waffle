@@ -1,12 +1,12 @@
-import { brand, sauces, fruits, toppings, limits, signatureChoice, type Choice, type Swatch } from '../content';
+import { brand, sauces, fruits, toppings, limits, signatureChoice, orderTarget, type Choice, type Swatch } from '../content';
 import { kova } from '../art/kova';
 
 type Group = keyof Choice;
 
-const GROUPS: { key: Group; title: string; list: Swatch[] }[] = [
-  { key: 'sauces', title: 'Sos', list: sauces },
-  { key: 'fruits', title: 'Meyve', list: fruits },
-  { key: 'toppings', title: 'Son dokunuş', list: toppings },
+const GROUPS: { key: Group; title: string; note: string; list: Swatch[] }[] = [
+  { key: 'sauces', title: 'Çikolata', note: 'Çikolatanı sen seç. Bol, akışkan, cömert.', list: sauces },
+  { key: 'fruits', title: 'Taze meyve', note: 'Çilek, muz ve mevsimin en iyisi.', list: fruits },
+  { key: 'toppings', title: 'Son dokunuş', note: 'Süslemeni seç; son katman senin.', list: toppings },
 ];
 
 const NAMES: Record<string, string> = {
@@ -65,7 +65,8 @@ export function builder() {
     GROUPS.map(
       (g, gi) => `
     <fieldset data-group="${g.key}">
-      <legend><span class="num">0${gi + 1}</span><span class="t">${g.title}</span><span class="hint">en fazla ${limits[g.key]}</span></legend>
+      <legend><span class="num">${gi + 1}</span><span class="t">${g.title}</span><span class="hint">en fazla ${limits[g.key]}</span></legend>
+      <p class="step-note">${g.note}</p>
       <div class="chips">
         ${g.list
           .map(
@@ -80,20 +81,25 @@ export function builder() {
     </fieldset>`,
     ).join('') +
     `<div class="atelier-actions">
-      <button class="btn btn-primary" type="button" data-act="share">Waffle’ımı paylaş <span aria-hidden="true">↗</span></button>
-      <button class="btn btn-line" type="button" data-act="random">Şaşırt beni</button>
-      <button class="link" type="button" data-act="reset">Baştan al</button>
+      <a class="btn btn-primary" data-act="order" target="_blank" rel="noopener">${brand.whatsapp ? 'Bu bardağı sipariş et' : 'Bu bardağı sor'} <span class="arr" aria-hidden="true">↗</span></a>
+      <button class="btn btn-line" type="button" data-act="share">Paylaş</button>
+      <span class="atelier-links">
+        <button class="link" type="button" data-act="random">Şaşırt beni</button>
+        <button class="link" type="button" data-act="reset">Baştan al</button>
+      </span>
     </div>
-    <p class="toast" role="status" aria-live="polite"></p>
     <p class="atelier-note">Seçenekler örnektir; günün seçkisi şubeye göre değişebilir.</p>`;
 
-  const toast = form.querySelector<HTMLElement>('.toast')!;
+  const toast = document.querySelector<HTMLElement>('.toast');
   let toastTimer = 0;
   const say = (msg: string) => {
+    if (!toast) return;
     toast.textContent = msg;
+    toast.classList.add('is-on');
     clearTimeout(toastTimer);
-    toastTimer = window.setTimeout(() => (toast.textContent = ''), 4200);
+    toastTimer = window.setTimeout(() => toast.classList.remove('is-on'), 3800);
   };
+  const orderBtn = form.querySelector<HTMLAnchorElement>('[data-act="order"]')!;
 
   const sync = (changed: Group | 'all' | null) => {
     for (const g of GROUPS) {
@@ -110,6 +116,12 @@ export function builder() {
     for (const t of targets) stage.querySelector(`[data-layer="${t}"]`)?.classList.add('is-entering');
     nameEl.textContent = name;
     sumEl.textContent = kovaSummary(choice);
+    // the order link always carries the current cup
+    const message = `Merhaba, şu bardakta waffle’ı istiyorum: ${kovaSummary(choice)}.`;
+    const target = orderTarget(message);
+    orderBtn.href = target.href;
+    orderBtn.dataset.order = message;
+    orderBtn.dataset.channel = target.channel;
   };
 
   form.addEventListener('change', (e) => {

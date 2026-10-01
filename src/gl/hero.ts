@@ -88,6 +88,21 @@ export class WaffleRenderer {
     if (this.still) this.draw(performance.now());
   }
 
+  private pourFrom = -1;
+  private pourDur = 3400;
+
+  /** Lets the chocolate pour in over `durationMs`, starting after `delayMs`. */
+  pourIn(delayMs = 400, durationMs = 3400) {
+    if (this.still) {
+      this.state.pour = 1;
+      this.kick();
+      return;
+    }
+    this.pourFrom = performance.now() + delayMs;
+    this.pourDur = durationMs;
+    this.kick();
+  }
+
   /** Re-render once (still mode) or make sure the loop runs. */
   kick() {
     if (this.still) {
@@ -102,8 +117,13 @@ export class WaffleRenderer {
   private loop = (now: number) => {
     this.raf = 0;
     if (!this.visible || document.hidden) return;
+    if (this.pourFrom >= 0) {
+      const t = Math.min(1, Math.max(0, (now - this.pourFrom) / this.pourDur));
+      this.state.pour = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+      if (t >= 1) this.pourFrom = -1;
+    }
     // once the chocolate has landed only light and steam move: 30fps is plenty
-    const settled = this.state.pour >= 1;
+    const settled = this.state.pour >= 1 && this.pourFrom < 0;
     if (!settled || now - this.last > 31) {
       this.last = now;
       this.draw(now);

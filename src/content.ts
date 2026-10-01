@@ -1,13 +1,74 @@
 /**
- * Every brand fact the scripts use lives here. The static copy in index.html
- * (menu, prices, JSON-LD) mirrors it — change both together.
+ * The single source for every brand fact on the site. The product cards, contact block and
+ * JSON-LD in index.html are rendered from here at build time (see vite.config.ts), and the
+ * scripts read the same data. Empty fields are simply not shown: nothing is invented.
  */
 
 export const brand = {
   name: 'İYB Bubble Waffle Yenimahalle',
+  short: 'İYB Bubble Waffle',
+  branch: 'Yenimahalle',
   instagram: 'https://www.instagram.com/iybwaffleyenimahalle/',
   handle: '@iybwaffleyenimahalle',
+  /** Opens an Instagram DM thread with the branch. */
+  dm: 'https://ig.me/m/iybwaffleyenimahalle',
+  /** Fill these when the branch confirms them; every CTA and the contact block pick them up. */
+  whatsapp: '', // international format without + or spaces, e.g. '905xxxxxxxxx'
+  phone: '', // as it should be shown, e.g. '0 5xx xxx xx xx'
+  address: '', // full street address
+  mapsUrl: '', // Google Maps link to the branch
+  hours: [] as { days: string; time: string }[], // e.g. { days: 'Her gün', time: '13:00–23:00' }
+  /** The production URL (with trailing slash) once the domain is known; enables canonical and og:url. */
+  url: '',
 };
+
+export type ArtId = 'bubble' | 'bardak' | 'cicek' | 'fondu' | 'belcika' | 'cubuk' | 'sandwich';
+
+export interface Product {
+  id: string;
+  name: string;
+  desc: string;
+  art: ArtId;
+  tag?: string;
+  /** Price in TL; null shows "Fiyat şubede" until the branch confirms it. */
+  price: number | null;
+  /** Optional real photo in /public (e.g. '/urunler/acik-bubble.webp'); replaces the drawing. */
+  photo?: string;
+}
+
+export const products: Product[] = [
+  {
+    id: 'acik-bubble',
+    name: 'Açık Bubble Waffle',
+    tag: 'İmza',
+    art: 'bubble',
+    price: null,
+    desc: 'Baloncuk baloncuk pişen waffle: dışı çıtır, içi yumuşak. Açık sunulur; çikolatası, meyvesi ve süslemesi senden.',
+  },
+  { id: 'bardakta', name: 'Bardakta Waffle', art: 'bardak', price: null, desc: 'Lokma lokma waffle, çikolata ve meyve; hepsi tek bardakta, elinde.' },
+  { id: 'cicek', name: 'Çiçek Waffle', art: 'cicek', price: null, desc: 'Çiçek biçiminde pişen waffle, dilediğin çikolata ve meyveyle.' },
+  { id: 'fondu', name: 'Fondü Waffle', art: 'fondu', price: null, desc: 'Waffle lokmaları ve yanında akışkan çikolata. Batır, paylaş.' },
+  { id: 'belcika', name: 'Belçika Waffle', art: 'belcika', price: null, desc: 'Derin kareli klasik Belçika waffle’ı; çikolata her kareye dolar.' },
+  { id: 'cubuk', name: 'Çubuk Waffle', art: 'cubuk', price: null, desc: 'Çubukta waffle: elde taşınır, her ısırığı çikolatalı.' },
+  { id: 'sandwich', name: 'Sandwich Waffle', art: 'sandwich', price: null, desc: 'İki kat waffle, arası senin seçimin.' },
+];
+
+export const extras = [
+  { name: 'İçecekler', desc: 'Çay, Türk kahvesi, caffè latte, cappuccino; serinlemek için ice tea ve meyveli soda.' },
+  { name: 'Dondurma', desc: 'Sıcak waffle’ın yanına bir top soğuk dondurma.' },
+];
+
+export const formatPrice = (p: number) => `${p.toLocaleString('tr-TR')} ₺`;
+
+/** Where an order or question goes: WhatsApp with a prefilled message once a number is set, else an Instagram DM. */
+export function orderTarget(message: string) {
+  if (brand.whatsapp) {
+    return { href: `https://wa.me/${brand.whatsapp}?text=${encodeURIComponent(message)}`, channel: 'whatsapp' as const };
+  }
+  return { href: brand.dm, channel: 'dm' as const };
+}
+
+export const orderLabel = () => (brand.whatsapp ? 'WhatsApp’tan sipariş ver' : 'Instagram’dan yaz');
 
 export type Swatch = { id: string; label: string; color: string; shade: string };
 

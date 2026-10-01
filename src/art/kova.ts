@@ -1,4 +1,4 @@
-import { sauces, fruits, toppings, type Choice, type Swatch } from '../content';
+import { sauces, fruits, toppings, type Choice, type Swatch } from '../content.ts';
 
 /**
  * The kova (cup) waffle, drawn as SVG from a choice of sauces, fruits and toppings.
@@ -6,11 +6,11 @@ import { sauces, fruits, toppings, type Choice, type Swatch } from '../content';
  * Deterministic: the same choice always draws the same cup.
  */
 
-type Pt = [number, number];
+export type Pt = [number, number];
 
 const CUP = { cx: 260, top: 318, rxTop: 156, ryTop: 36, bottom: 584, rxBot: 112, ryBot: 22 };
 
-function rng(seed: number) {
+export function rng(seed: number) {
   let a = seed >>> 0;
   return () => {
     a = (a + 0x6d2b79f5) >>> 0;
@@ -24,7 +24,7 @@ function rng(seed: number) {
 const f = (n: number) => Math.round(n * 10) / 10;
 
 /** Closed Catmull-Rom spline through points as a cubic Bezier path. */
-function smoothClosed(pts: Pt[]): string {
+export function smoothClosed(pts: Pt[]): string {
   const n = pts.length;
   let d = `M${f(pts[0][0])},${f(pts[0][1])}`;
   for (let i = 0; i < n; i++) {
@@ -36,7 +36,7 @@ function smoothClosed(pts: Pt[]): string {
   return d + 'Z';
 }
 
-function smoothOpen(pts: Pt[]): string {
+export function smoothOpen(pts: Pt[]): string {
   let d = `M${f(pts[0][0])},${f(pts[0][1])}`;
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[Math.max(i - 1, 0)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(i + 2, pts.length - 1)];
@@ -188,7 +188,7 @@ const SLOTS: [number, number, number][] = [
   [262, 244, 6],
 ];
 
-function strawberry(x: number, y: number, r: number, id: string): string {
+export function strawberry(x: number, y: number, r: number, id: string): string {
   return (
     `<g transform="translate(${x} ${y}) rotate(${r})">` +
     `<path d="M0,-18C14,-23 25,-10 21,4C17,16 6,23 0,27C-6,23 -17,16 -21,4C-25,-10 -14,-23 0,-18Z" fill="url(#${id}-berry)"/>` +
@@ -200,7 +200,7 @@ function strawberry(x: number, y: number, r: number, id: string): string {
   );
 }
 
-function banana(x: number, y: number, r: number): string {
+export function banana(x: number, y: number, r: number): string {
   let seeds = '';
   for (let i = 0; i < 6; i++) {
     const a = (i / 6) * Math.PI * 2;
@@ -216,7 +216,7 @@ function banana(x: number, y: number, r: number): string {
   );
 }
 
-function kiwi(x: number, y: number, r: number, id: string): string {
+export function kiwi(x: number, y: number, r: number, id: string): string {
   let seeds = '';
   for (let i = 0; i < 14; i++) {
     const a = (i / 14) * Math.PI * 2;
@@ -232,7 +232,7 @@ function kiwi(x: number, y: number, r: number, id: string): string {
   );
 }
 
-function blueberry(x: number, y: number, id: string): string {
+export function blueberry(x: number, y: number, id: string): string {
   return (
     `<g transform="translate(${x} ${y})">` +
     `<circle r="10" fill="url(#${id}-blue)"/>` +
@@ -328,7 +328,7 @@ export function kova({ choice, id, viewBox = '0 0 520 620', label }: KovaOptions
 </svg>`;
 }
 
-function defs(id: string): string {
+export function defs(id: string): string {
   return `<defs>
     <radialGradient id="${id}-gold" cx=".35" cy=".3" r=".9">
       <stop offset="0" stop-color="#f3c47a"/><stop offset=".55" stop-color="#d9913e"/><stop offset="1" stop-color="#a65a1c"/>

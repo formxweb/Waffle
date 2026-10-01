@@ -1,26 +1,33 @@
 import type Lenis from 'lenis';
 
 /**
- * Header: transparent over the hero, solid once scrolled, hides while reading
- * downwards and returns on scroll up. Below 900px the links fold into a sheet.
+ * Header: transparent over the hero, solid once scrolled. On phones it tucks away while
+ * reading downwards (the quick-action bar carries the order button there) and returns on
+ * scroll up; on larger screens it stays, so the order button is always one click away.
+ * Below 900px the links fold into a sheet.
  */
 export function nav(lenis: Lenis | null) {
   const el = document.querySelector<HTMLElement>('[data-nav]')!;
   const toggle = el.querySelector<HTMLButtonElement>('.nav-toggle')!;
   const sheet = el.querySelector<HTMLElement>('#sheet')!;
   const hero = document.querySelector<HTMLElement>('.hero')!;
+  const light = [...document.querySelectorAll<HTMLElement>('.menu')];
 
   let lastY = scrollY;
   let open = false;
+  const phone = matchMedia('(max-width: 900px)');
 
   const onScroll = () => {
     const y = scrollY;
     el.classList.toggle('is-solid', y > 24);
+    // a light section under the header's middle line switches it to its light variant
+    const mid = el.offsetHeight / 2;
+    el.classList.toggle('on-light', !open && light.some((s) => { const r = s.getBoundingClientRect(); return r.top <= mid && r.bottom > mid; }));
     const pastHero = y > hero.offsetHeight * 0.7;
     const down = y > lastY + 2;
     const up = y < lastY - 2;
     if (!open && !el.contains(document.activeElement)) {
-      if (pastHero && down) el.classList.add('is-hidden');
+      if (pastHero && down && phone.matches) el.classList.add('is-hidden');
       else if (up || !pastHero) el.classList.remove('is-hidden');
     }
     lastY = y;
@@ -95,7 +102,7 @@ export function nav(lenis: Lenis | null) {
     },
     { rootMargin: '-45% 0px -50% 0px' },
   );
-  for (const id of ['top', 'hikaye', 'bardak', 'tasarla', 'menu', 'bul']) {
+  for (const id of ['top', 'hikaye', 'menu', 'tasarla', 'iletisim']) {
     const s = document.getElementById(id);
     if (s) io.observe(s);
   }

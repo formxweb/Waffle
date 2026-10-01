@@ -3,12 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>İYB Bubble Waffle Yenimahalle — Kare kare mutluluk</title>
-  <meta name="description" content="İYB Bubble Waffle Yenimahalle: bubble, bardakta, çiçek, fondü, Belçika, çubuk ve sandwich waffle. Çikolatanı, meyveni ve süslemeni sen seç. Instagram: @iybwaffleyenimahalle." />
+  <title>İYB Bubble Waffle Yenimahalle — Bubble, bardakta ve Belçika waffle</title>
+  <meta name="description" content="İYB Bubble Waffle Yenimahalle: Açık Bubble, Bardakta, Çiçek, Fondü, Belçika, Çubuk ve Sandwich waffle. Çikolatanı, meyveni, süslemeni sen seç." />
   <meta name="theme-color" content="#120a06" />
-  <meta name="color-scheme" content="dark" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="format-detection" content="telephone=no" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="/site.webmanifest" />
+  <!--slot:urlmeta-->
 
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="tr_TR" />
@@ -24,49 +26,12 @@
   <meta name="twitter:description" content="Sıcak waffle, bol çikolata, taze meyve. Çikolatanı, meyveni, süslemeni sen seç." />
   <meta name="twitter:image" content="og.jpg" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FoodEstablishment",
-    "name": "İYB Bubble Waffle Yenimahalle",
-    "slogan": "Kare kare mutluluk.",
-    "servesCuisine": ["Waffle", "Tatlı"],
-    "sameAs": ["https://www.instagram.com/iybwaffleyenimahalle/"],
-    "hasMenu": {
-      "@type": "Menu",
-      "name": "İYB Bubble Waffle menüsü",
-      "hasMenuSection": [
-        {
-          "@type": "MenuSection",
-          "name": "Waffle",
-          "hasMenuItem": [
-            { "@type": "MenuItem", "name": "Açık Bubble Waffle", "description": "Baloncuk baloncuk pişen waffle: dışı çıtır, içi yumuşak. Açık sunulur; çikolatası, meyvesi ve süslemesi senden." },
-            { "@type": "MenuItem", "name": "Bardakta Waffle", "description": "Lokma lokma waffle, çikolata ve meyve; hepsi tek bardakta, elinde." },
-            { "@type": "MenuItem", "name": "Çiçek Waffle", "description": "Çiçek biçiminde pişen waffle, dilediğin çikolata ve meyveyle." },
-            { "@type": "MenuItem", "name": "Fondü Waffle", "description": "Waffle lokmaları ve yanında akışkan çikolata. Batır, paylaş." },
-            { "@type": "MenuItem", "name": "Belçika Waffle", "description": "Derin kareli klasik Belçika waffle’ı; çikolata her kareye dolar." },
-            { "@type": "MenuItem", "name": "Çubuk Waffle", "description": "Çubukta waffle: elde taşınır, her ısırığı çikolatalı." },
-            { "@type": "MenuItem", "name": "Sandwich Waffle", "description": "İki kat waffle, arası senin seçimin." }
-          ]
-        },
-        {
-          "@type": "MenuSection",
-          "name": "Yanına",
-          "hasMenuItem": [
-            { "@type": "MenuItem", "name": "İçecekler", "description": "Çay, Türk kahvesi, caffè latte, cappuccino; serinlemek için ice tea ve meyveli soda." },
-            { "@type": "MenuItem", "name": "Dondurma", "description": "Sıcak waffle’ın yanına bir top soğuk dondurma." }
-          ]
-        }
-      ]
-    }
-  }
-  </script>
+  <!--slot:jsonld-->
   <script>
     (function (d) {
       d.classList.replace('no-js', 'js');
-      d.classList.add('intro-pending');
       // never leave the hero hidden if the module fails to run
-      setTimeout(function () { d.classList.remove('intro-pending'); }, 4000);
+      setTimeout(function () { d.classList.add('is-loaded'); }, 3500);
     })(document.documentElement);
   </script>
 </head>
@@ -81,13 +46,12 @@
       </a>
       <nav class="nav-links" aria-label="Ana menü">
         <ul>
-          <li><a href="#bardak">Bardak</a></li>
-          <li><a href="#tasarla">Tasarla</a></li>
           <li><a href="#menu">Menü</a></li>
-          <li><a href="#bul">Bizi bul</a></li>
+          <li><a href="#tasarla">Tasarla</a></li>
+          <li><a href="#iletisim">İletişim</a></li>
         </ul>
       </nav>
-      <a class="btn btn-sm btn-line nav-cta" href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-sm btn-primary nav-cta" href="<!--slot:orderhref-->" target="_blank" rel="noopener" data-order="Merhaba, sipariş vermek istiyorum." data-channel="<!--slot:orderchannel-->"><!--slot:orderlabel--> <span class="arr" aria-hidden="true">↗</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="sheet">
         <span class="nav-toggle-label">Menü</span>
         <span class="nav-toggle-icon" aria-hidden="true"><i></i><i></i></span>
@@ -96,13 +60,12 @@
     <div class="sheet" id="sheet" hidden>
       <nav aria-label="Mobil menü">
         <ol>
-          <li><a href="#bardak"><span>01</span>Bardak</a></li>
-          <li><a href="#tasarla"><span>02</span>Tasarla</a></li>
-          <li><a href="#menu"><span>03</span>Menü</a></li>
-          <li><a href="#bul"><span>04</span>Bizi bul</a></li>
+          <li><a href="#menu">Menü</a></li>
+          <li><a href="#tasarla">Waffle’ını tasarla</a></li>
+          <li><a href="#iletisim">İletişim</a></li>
         </ol>
       </nav>
-      <a class="btn btn-primary" href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">@iybwaffleyenimahalle <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-primary" href="<!--slot:orderhref-->" target="_blank" rel="noopener" data-order="Merhaba, sipariş vermek istiyorum." data-channel="<!--slot:orderchannel-->"><!--slot:orderlabel--> <span class="arr" aria-hidden="true">↗</span></a>
     </div>
   </header>
 
@@ -111,70 +74,55 @@
       <canvas class="hero-gl" aria-hidden="true"></canvas>
       <div class="hero-fallback" aria-hidden="true"></div>
       <div class="hero-shade" aria-hidden="true"></div>
-      <div class="wrap hero-inner">
-        <p class="eyebrow hero-eyebrow" data-intro>İYB Bubble Waffle <span class="dot" aria-hidden="true"></span> Yenimahalle</p>
+      <div class="wrap hero-grid">
+        <p class="hero-kicker">İYB Bubble Waffle <span aria-hidden="true">·</span> Yenimahalle</p>
         <h1 class="hero-title" id="hero-title">
-          <span class="line" data-intro><span>Kare kare</span></span>
-          <span class="line" data-intro><em>mutluluk.</em></span>
+          <span class="line"><span>Kare kare</span></span>
+          <span class="line"><span><em>mutluluk.</em></span></span>
         </h1>
-        <p class="hero-lead" data-intro>Sıcak waffle, bol çikolata, taze meyve. Çikolatanı, meyveni, süslemeni sen seç.</p>
-        <div class="hero-cta" data-intro>
-          <a class="btn btn-primary" href="#bardak">Lezzeti keşfet <span aria-hidden="true">↓</span></a>
-          <a class="btn btn-ghost" href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Instagram <span aria-hidden="true">↗</span></a>
+        <div class="hero-aside">
+          <p class="hero-lead">Sıcak waffle, bol çikolata, taze meyve. Çikolatanı, meyveni, süslemeni sen seç.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#menu">Menüyü gör <span class="arr" aria-hidden="true">↓</span></a>
+            <a class="btn btn-ghost" href="<!--slot:orderhref-->" target="_blank" rel="noopener" data-order="Merhaba, sipariş vermek istiyorum." data-channel="<!--slot:orderchannel-->"><!--slot:orderlabel--> <span class="arr" aria-hidden="true">↗</span></a>
+          </div>
         </div>
-      </div>
-      <div class="wrap hero-foot" data-intro>
         <dl class="facts">
           <div><dt>İmza</dt><dd>Bubble Waffle</dd></div>
           <div><dt>Menüde</dt><dd>7 waffle</dd></div>
           <div><dt>Şube</dt><dd>Yenimahalle</dd></div>
         </dl>
-        <span class="scroll-cue" aria-hidden="true"><i></i>Kaydır</span>
       </div>
     </section>
 
-    <section class="manifesto" id="hikaye" aria-labelledby="hikaye-title">
-      <div class="wrap manifesto-inner">
-        <p class="eyebrow" id="hikaye-title">Hikâye</p>
-        <p class="manifesto-text" data-words>İyi bir waffle, ilk ısırıktan önce belli olur: kokusundan, kenarındaki çıtırtıdan, karelerin arasına süzülen çikolatadan. İYB’de çikolatanı, meyveni ve süslemeni sen seçersin. Sıcakken, cömertçe, senin için.</p>
-      </div>
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>Sıcak waffle</span><i></i><span>Bol çikolata</span><i></i><span>Taze meyve</span><i></i><span>Bubble waffle</span><i></i><span>Bardakta waffle</span><i></i>
-          <span>Sıcak waffle</span><i></i><span>Bol çikolata</span><i></i><span>Taze meyve</span><i></i><span>Bubble waffle</span><i></i><span>Bardakta waffle</span><i></i>
-        </div>
+    <section class="intro" id="hikaye" aria-labelledby="hikaye-title">
+      <div class="wrap intro-grid">
+        <h2 class="label" id="hikaye-title">Hikâye</h2>
+        <p class="intro-text">İyi bir waffle, ilk ısırıktan önce belli olur: kokusundan, kenarındaki çıtırtıdan, karelerin arasına süzülen çikolatadan. İYB’de çikolatanı, meyveni ve süslemeni sen seçersin. Sıcakken, cömertçe, senin için.</p>
       </div>
     </section>
 
-    <section class="signature" id="bardak" aria-labelledby="bardak-title">
-      <div class="sig-pin">
-        <div class="wrap sig-grid">
-          <header class="sig-head">
-            <p class="eyebrow">İmza lezzet</p>
-            <h2 class="display" id="bardak-title">Bardakta <em>Waffle</em></h2>
-            <p class="lead">Bir waffle’ı bardağa sığdırdık, lezzetinden hiçbir şey eksiltmeden. Katman katman, çatal çatal.</p>
-            <p class="sig-price"><span class="price">Senin tarifin</span><span class="price-note">Çikolatanı, meyveni ve süslemeni <strong>sen seç.</strong></span></p>
-          </header>
-          <div class="sig-art" data-kova="signature" aria-hidden="true"></div>
-          <ol class="sig-layers">
-            <li data-step="cup"><span class="num">01</span><div><h3>Bardak</h3><p>Elinde taşı, yolda ye; son lokmaya kadar.</p></div></li>
-            <li data-step="waffle"><span class="num">02</span><div><h3>Waffle</h3><p>Dışı çıtır, içi yumuşak; lokma lokma kesilmiş, sıcacık.</p></div></li>
-            <li data-step="sauce"><span class="num">03</span><div><h3>Çikolata</h3><p>Çikolatanı sen seç. Bol, akışkan, cömert.</p></div></li>
-            <li data-step="fruit"><span class="num">04</span><div><h3>Taze meyve</h3><p>Çilek, muz ve mevsimin en iyisi.</p></div></li>
-            <li data-step="topping"><span class="num">05</span><div><h3>Son dokunuş</h3><p>Süslemeni seç; son katman senin.</p></div></li>
-          </ol>
-          <div class="sig-progress" aria-hidden="true"><i></i></div>
+    <section class="menu" id="menu" aria-labelledby="menu-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="label">Menü</p>
+          <h2 class="title" id="menu-title">Yedi waffle, tek keyif.</h2>
+          <p class="lead">Bubble’dan Belçika’ya, bardaktan çubuğa. Hepsini çikolatanla, meyvenle, süslemenle tamamla.</p>
+        </header>
+        <div class="products">
+          <!--slot:products-->
+          <aside class="extras-card" aria-labelledby="yanina-title">
+            <h3 class="label" id="yanina-title">Yanına</h3>
+            <ul class="extras"><!--slot:extras-->
+            </ul>
+            <p class="menu-note">Fiyatlar ve günün seçkisi şubede. Güncel liste için <a href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Instagram’dan</a> yazabilirsin.</p>
+          </aside>
         </div>
       </div>
     </section>
 
     <section class="atelier" id="tasarla" aria-labelledby="tasarla-title">
       <div class="wrap atelier-grid">
-        <header class="atelier-head">
-          <p class="eyebrow">Atölye</p>
-          <h2 class="display" id="tasarla-title">Waffle’ını <em>tasarla.</em></h2>
-          <p class="lead">Çikolatanı, meyveni ve süslemeni seç; bardağın anında hazırlansın. Sonra kasada göster ya da arkadaşına gönder.</p>
-        </header>
         <figure class="atelier-stage">
           <div class="atelier-art" data-kova="builder"></div>
           <figcaption class="atelier-caption">
@@ -183,86 +131,34 @@
             <span class="atelier-summary" data-builder-summary></span>
           </figcaption>
         </figure>
-        <form class="atelier-form" data-builder>
-          <noscript><p class="lead">Waffle’ını tasarlamak için JavaScript’i aç. Seçenekleri şubede de sorabilirsin.</p></noscript>
-        </form>
+        <div class="atelier-panel">
+          <header class="atelier-head">
+            <p class="label">Bardakta Waffle</p>
+            <h2 class="title" id="tasarla-title">Waffle’ını tasarla.</h2>
+            <p class="lead">Bir waffle’ı bardağa sığdırdık, lezzetinden hiçbir şey eksiltmeden. Katman katman, çatal çatal.</p>
+            <dl class="atelier-base">
+              <div><dt>Bardak</dt><dd>Elinde taşı, yolda ye; son lokmaya kadar.</dd></div>
+              <div><dt>Waffle</dt><dd>Dışı çıtır, içi yumuşak; lokma lokma kesilmiş, sıcacık.</dd></div>
+            </dl>
+          </header>
+          <form class="atelier-form" data-builder>
+            <noscript><p class="lead">Waffle’ını tasarlamak için JavaScript’i aç. Seçenekleri şubede de sorabilirsin.</p></noscript>
+          </form>
+        </div>
       </div>
     </section>
 
-    <section class="menu" id="menu" aria-labelledby="menu-title">
-      <div class="wrap menu-grid">
-        <header class="menu-head">
-          <p class="eyebrow">Menü</p>
-          <h2 class="display" id="menu-title">Yedi waffle, <em>tek keyif.</em></h2>
-          <p class="lead">Bubble’dan Belçika’ya, bardaktan çubuğa. Hepsini çikolatanla, meyvenle, süslemenle tamamla.</p>
-          <a class="menu-daily" href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Güncel menü ve fiyatlar Instagram’da <span aria-hidden="true">↗</span></a>
-        </header>
-        <ul class="menu-list">
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Açık Bubble Waffle <span class="tag">İmza</span></h3>
-              <p>Baloncuk baloncuk pişen waffle: dışı çıtır, içi yumuşak. Açık sunulur; çikolatası, meyvesi ve süslemesi senden.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Bardakta Waffle</h3>
-              <p>Lokma lokma waffle, çikolata ve meyve; hepsi tek bardakta, elinde.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Çiçek Waffle</h3>
-              <p>Çiçek biçiminde pişen waffle, dilediğin çikolata ve meyveyle.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Fondü Waffle</h3>
-              <p>Waffle lokmaları ve yanında akışkan çikolata. Batır, paylaş.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Belçika Waffle</h3>
-              <p>Derin kareli klasik Belçika waffle’ı; çikolata her kareye dolar.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Çubuk Waffle</h3>
-              <p>Çubukta waffle: elde taşınır, her ısırığı çikolatalı.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Sandwich Waffle</h3>
-              <p>İki kat waffle, arası senin seçimin.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>İçecekler <span class="tag">Yanına</span></h3>
-              <p>Çay, Türk kahvesi, caffè latte, cappuccino; serinlemek için ice tea ve meyveli soda.</p>
-            </div>
-          </li>
-          <li class="menu-item">
-            <div class="mi-text">
-              <h3>Dondurma <span class="tag">Yanına</span></h3>
-              <p>Sıcak waffle’ın yanına bir top soğuk dondurma.</p>
-            </div>
-          </li>
+    <section class="contact" id="iletisim" aria-labelledby="iletisim-title">
+      <div class="wrap contact-grid">
+        <div class="contact-intro">
+          <p class="label">İletişim</p>
+          <h2 class="title" id="iletisim-title">Bir waffle uzağındayız.</h2>
+          <p class="lead">Şube adresi, çalışma saatleri ve günün seçkisi Instagram’da. Takip et, merak ettiğini DM’den sor.</p>
+        </div>
+        <ul class="contact-list"><!--slot:contact-->
         </ul>
-        <p class="menu-note">Fiyatlar ve günün seçkisi şubede. Güncel liste için Instagram’dan yazabilirsin.</p>
       </div>
-    </section>
-
-    <section class="visit" id="bul" aria-labelledby="bul-title">
-      <div class="visit-grid-bg" aria-hidden="true"></div>
-      <div class="wrap visit-inner">
-        <p class="eyebrow">Bizi bul</p>
-        <h2 class="display" id="bul-title">Bir waffle <em>uzağındayız.</em></h2>
-        <p class="lead">Şube adresi, çalışma saatleri ve günün seçkisi Instagram’da. Takip et, merak ettiğini DM’den sor.</p>
+      <div class="wrap">
         <a class="handle" href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">
           <span class="handle-text">@iybwaffleyenimahalle</span>
           <span class="handle-arrow" aria-hidden="true">↗</span>
@@ -272,19 +168,42 @@
   </main>
 
   <footer class="foot">
-    <div class="wrap">
-      <p class="foot-mark" aria-hidden="true">İYB <em>Waffle</em></p>
-      <div class="foot-row">
-        <p>Kare kare mutluluk. <span class="muted">Yenimahalle</span></p>
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" aria-label="İYB Bubble Waffle, başa dön">
+          <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="5.5" fill="currentColor"/><g fill="var(--ink)"><rect x="4.5" y="4.5" width="4" height="4" rx="1"/><rect x="10" y="4.5" width="4" height="4" rx="1"/><rect x="15.5" y="4.5" width="4" height="4" rx="1"/><rect x="4.5" y="10" width="4" height="4" rx="1"/><rect x="10" y="10" width="4" height="4" rx="1"/><rect x="15.5" y="10" width="4" height="4" rx="1"/><rect x="4.5" y="15.5" width="4" height="4" rx="1"/><rect x="10" y="15.5" width="4" height="4" rx="1"/><rect x="15.5" y="15.5" width="4" height="4" rx="1"/></g></svg>
+          <span class="brand-word">İYB <em>Bubble Waffle</em></span>
+        </a>
+        <p>Yenimahalle şubesi. Kare kare mutluluk.</p>
+      </div>
+      <nav class="foot-col" aria-labelledby="foot-site">
+        <h2 class="label" id="foot-site">Site</h2>
         <ul>
-          <li><a href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#menu">Menü</a></li>
-          <li><a href="#top">Başa dön ↑</a></li>
+          <li><a href="#tasarla">Waffle’ını tasarla</a></li>
+          <li><a href="#iletisim">İletişim</a></li>
         </ul>
-        <p class="muted">© <span data-year>2026</span> İYB Bubble Waffle Yenimahalle</p>
+      </nav>
+      <div class="foot-col">
+        <h2 class="label">Bize ulaş</h2>
+        <ul>
+          <li><a href="<!--slot:orderhref-->" target="_blank" rel="noopener" data-order="Merhaba, sipariş vermek istiyorum." data-channel="<!--slot:orderchannel-->"><!--slot:orderlabel--> ↗</a></li>
+          <li><a href="https://www.instagram.com/iybwaffleyenimahalle/" target="_blank" rel="noopener">Instagram profili ↗</a></li>
+        </ul>
       </div>
     </div>
+    <div class="wrap foot-base">
+      <p>© <span data-year>2026</span> İYB Bubble Waffle Yenimahalle</p>
+      <a href="#top">Başa dön ↑</a>
+    </div>
   </footer>
+
+  <nav class="dock" aria-label="Hızlı erişim">
+    <a class="dock-link" href="#menu">Menü</a>
+    <a class="dock-order" href="<!--slot:orderhref-->" target="_blank" rel="noopener" data-order="Merhaba, sipariş vermek istiyorum." data-channel="<!--slot:orderchannel-->"><!--slot:orderlabel--> <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <div class="toast" role="status" aria-live="polite"></div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
